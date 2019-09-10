@@ -1,1 +1,1 @@
-web: python app/Hello.py runserver
+web: python Hello.py
