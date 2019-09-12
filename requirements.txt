@@ -1,3 +1,6 @@
 virtualenv==16.7.5
 Flask
 Gunicorn
+flask-socketio=4.2.1
+flask_session
+redis
