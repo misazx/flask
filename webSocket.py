@@ -37,7 +37,7 @@ def quotations_func(mes):
     """客户端连接"""
     print(mes)
     sid = request.sid  # io客户端的sid, socketio用此唯一标识客户端.
-    can = False
+    can = True #False
     host = request.host
     host_list = ['127.0.0.1']
     """
@@ -50,12 +50,12 @@ def quotations_func(mes):
         can = True
     else:
         pass
+
     if can:
+        socket_io.emit(event="login", data=json.dumps({"message": "connect success!"}))
+    else:
         socket_io.emit(event="login", data=json.dumps({"message": "connect refuse!"}))
         socket_io.server.disconnect(sid)
-    else:
-        socket_io.emit(event="login", data=json.dumps({"message": "connect success!"}))
-
 
 @app.route("/test")
 def test_func():

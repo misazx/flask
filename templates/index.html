@@ -47,9 +47,10 @@
     <input type="text" id="input">
     <button class="el-button el-button--primary el-button--large" type="button" onclick="say()"><span>发送消息</span></button>
   </div>
-  <script src="/static/js/socket.io.js"></script>
+  <script src="/static/js/socket.io/socket.io.js"></script>
   <script>
-    var socket = io.connect('http://localhost:80');
+    var url = "http://" + document.domain + ':' + location.port;
+    var socket = io.connect(url);
     socket.on('message', function (data) {
       let html = document.createElement('p')
       html.innerHTML = `系统消息：<span>${data.hello}</span>`
