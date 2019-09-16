@@ -57,7 +57,7 @@ def quotations_func(mes):
         socket_io.emit(event="login", data=json.dumps({"message": "connect refuse!"}))
         socket_io.server.disconnect(sid)
 
-@app.route("/test")
+@app.route("/")
 def test_func():
     """测试页面"""
     return render_template("test.html")
