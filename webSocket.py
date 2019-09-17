@@ -70,4 +70,4 @@ def test_func2():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    socket_io.run(app=app, host="0.0.0.0", port=port, debug=True)
+    socket_io.run(app=app, logger=True, engineio_logger=True)
