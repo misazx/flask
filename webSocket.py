@@ -18,7 +18,7 @@ app.config['SESSION_PERMANENT'] = True  # 如果设置为True，则关闭浏览�
 app.config['SESSION_REDIS'] = redis.Redis(host='ec2-3-215-116-159.compute-1.amazonaws.com', port='11249', password='p790653b7cce68ee0a7f855d8cc316be7976835ae1b1099c462bcdb0e7c2c12ed')
 app.config.from_object(__name__)
 Session(app)
-socket_io = SocketIO(app)
+socket_io = SocketIO(app, logger=True, engineio_logger=True)
 
 
 @app.route("/listen", methods=['post', 'get'])
@@ -70,4 +70,4 @@ def test_func2():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    socket_io.run(app=app, logger=True, engineio_logger=True)
+    socket_io.run(app=app)
