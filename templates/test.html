@@ -43,7 +43,7 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="text/javascript" charset="utf-8">
     $(function(){
-        var url = "http://" + document.domain + ':' + location.port;
+        var url =  document.domain + ':' + location.port; //"http://" + document.domain + ':' + location.port;
         console.log(url);
         var io_client = io.connect(url);
         io_client.on('connect', function() {

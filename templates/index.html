@@ -49,7 +49,7 @@
   </div>
   <script src="/static/js/socket.io/socket.io.js"></script>
   <script>
-    var url = "http://" + document.domain + ':' + location.port;
+    var url =  document.domain + ':' + location.port;
     var socket = io.connect(url);
     socket.on('message', function (data) {
       let html = document.createElement('p')
