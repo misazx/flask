@@ -43,10 +43,15 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>-->
 <script type="text/javascript" charset="utf-8">
     $(function(){
-        var url =   document.domain + ':' + location.port;
+        var url =  "";
         if(document.domain.indexOf("192.168")!=0 && document.domain.indexOf("local")!=0){
-            url =  "https://" + url;
+            url =  url + "https://";
         }
+        url =  url + document.domain;
+        if(location.port!=""){
+            url =  url + ':' + location.port;
+        }
+        
         console.log(url);
         var io_client = io.connect(url);
         io_client.on('connect', function() {
