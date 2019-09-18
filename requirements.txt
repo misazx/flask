@@ -4,3 +4,4 @@ Gunicorn
 flask-socketio
 flask_session
 redis
+eventlet
