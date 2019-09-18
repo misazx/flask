@@ -15,8 +15,8 @@ app.config['SECRET_KEY'] = secret_key  # 配置会话密钥
 app.config['SESSION_TYPE'] = "redis"  # session类型为redis
 app.config['SESSION_PERMANENT'] = True  # 如果设置为True，则关闭浏览器session就失效
 # 访问远程redis
-# app.config['SESSION_REDIS'] = redis.Redis(host='ec2-3-215-116-159.compute-1.amazonaws.com', port='11249', password='p790653b7cce68ee0a7f855d8cc316be7976835ae1b1099c462bcdb0e7c2c12ed')
-app.config['SESSION_REDIS'] = redis.Redis(os.environ['REDIS_URL'])
+app.config['SESSION_REDIS'] = redis.Redis(host='ec2-3-215-116-159.compute-1.amazonaws.com', port='11249', password='p790653b7cce68ee0a7f855d8cc316be7976835ae1b1099c462bcdb0e7c2c12ed')
+#app.config['SESSION_REDIS'] = redis.Redis(os.environ['REDIS_URL'])
 app.config.from_object(__name__)
 Session(app)
 socket_io = SocketIO(app, logger=True, engineio_logger=True)
