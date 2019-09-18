@@ -1,1 +1,1 @@
-gunicorn --worker-class eventlet -w 1 webSocket:app
+web gunicorn --worker-class eventlet -w 1 webSocket:app
