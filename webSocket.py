@@ -16,7 +16,8 @@ app.config['SESSION_TYPE'] = "redis"  # session类型为redis
 app.config['SESSION_PERMANENT'] = True  # 如果设置为True，则关闭浏览器session就失效
 # 访问远程redis
 # app.config['SESSION_REDIS'] = redis.from_url(os.environ['REDIS_URL'])
-r= redis.Redis(host='127.0.0.1', port='6379',db=1, decode_responses=True)
+# r= redis.Redis(host='127.0.0.1', port='6379',db=1, decode_responses=True)
+r= redis.from_url(os.environ['REDIS_URL'])
 app.config['SESSION_REDIS'] = r
 app.config.from_object(__name__)
 Session(app)
