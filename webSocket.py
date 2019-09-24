@@ -5,6 +5,7 @@ from flask_session import Session
 import os
 from flask import render_template
 from flask_socketio import SocketIO
+from flask import jsonify
 import json
 import redis
 
@@ -16,27 +17,29 @@ app.config['SESSION_TYPE'] = "redis"  # session类型为redis
 app.config['SESSION_PERMANENT'] = True  # 如果设置为True，则关闭浏览器session就失效
 # 访问远程redis
 # app.config['SESSION_REDIS'] = redis.from_url(os.environ['REDIS_URL'])
-# r= redis.Redis(host='127.0.0.1', port='6379',db=1, decode_responses=True)
-r= redis.from_url(os.environ['REDIS_URL'])
+r= redis.Redis(host='127.0.0.1', port='6379')#,db=1, decode_responses=True)
+# r= redis.from_url(os.environ['REDIS_URL'])
 app.config['SESSION_REDIS'] = r
 app.config.from_object(__name__)
 Session(app)
-socket_io = SocketIO(app)#, logger=True, engineio_logger=True)
+socket_io = SocketIO(app, logger=True, engineio_logger=True)
 
 
 r_whoisghost_lobby = 'whoisghost_lobby'
 
-@app.route("/whoisghost/lobby/list ", methods=['post', 'get'])
+@app.route("/whoisghost/lobby/list/", methods=['post', 'get'])
 def game_whoisghost_lobby_list():
     mes= r.lrange(r_whoisghost_lobby,0,-1)
-    return mes
+    print(mes)
+    return jsonify(mes)
 
-@app.route("/whoisghost/lobby/create ", methods=['post', 'get'])
+@app.route("/whoisghost/lobby/create/", methods=['post', 'get'])
 def game_whoisghost_lobby_create():
     data = request.args['data']
+    print(data)
     mes=data
     r.lpushx(r_whoisghost_lobby,mes)
-    return mes
+    return jsonify(mes)
 
 
 @app.route("/listen", methods=['post', 'get'])
