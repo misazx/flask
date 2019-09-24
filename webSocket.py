@@ -35,8 +35,8 @@ def game_whoisghost_lobby_list():
 
 @app.route("/whoisghost/lobby/create/", methods=['post', 'get'])
 def game_whoisghost_lobby_create():
-    print(request)
-    data = json.loads(request.json)
+    print(request.data)
+    data = request.json
     print(data)
     mes=data
     r.lpushx(r_whoisghost_lobby,mes)
